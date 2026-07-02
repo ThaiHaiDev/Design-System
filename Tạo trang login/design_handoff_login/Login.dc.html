@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/effects.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/tokens/base.css">
+  <link rel="stylesheet" href="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/styles.css">
+  <script src="_ds/verity-design-system-e79fdf30-4d78-4ff2-ae01-05e29c65acdd/_ds_bundle.js"></script>
+</helmet>
+
+<div style="min-height:100vh; width:100%; display:flex; align-items:center; justify-content:center; font-family:var(--font-body); background:var(--bg-primary); box-sizing:border-box; padding:var(--space-8) 0;">
+  <div style="width:360px; flex-shrink:0; background:var(--bg-secondary); border:1px solid var(--border-default); border-radius:var(--radius-xl); box-shadow:var(--shadow-sm); padding:var(--space-8);">
+
+    <div style="font-size:var(--text-2xl); font-weight:var(--weight-bold); color:var(--text-primary); margin-bottom:4px;">Verity</div>
+    <div style="font-size:var(--text-sm); color:var(--text-secondary); margin-bottom:var(--space-6);">Sign in to your account</div>
+
+    <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-6);">
+      <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Button" variant="secondary" size="lg" hint-size="100%,44px">Continue with Google</x-import>
+      <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Button" variant="secondary" size="lg" hint-size="100%,44px">Continue with GitHub</x-import>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:var(--space-3); margin-bottom:var(--space-6);">
+      <div style="flex:1; height:1px; background:var(--border-default);"></div>
+      <span style="font-size:var(--text-xs); color:var(--text-tertiary);">OR</span>
+      <div style="flex:1; height:1px; background:var(--border-default);"></div>
+    </div>
+
+    <form onSubmit="{{ onSubmit }}" style="display:flex; flex-direction:column; gap:var(--space-4);">
+      <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Input" label="Email" type="email" placeholder="you@company.com" value="{{ email }}" onChange="{{ onEmailChange }}" size="lg" hint-size="100%,68px"></x-import>
+      <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Input" label="Password" type="password" placeholder="••••••••" value="{{ password }}" onChange="{{ onPasswordChange }}" size="lg" hint-size="100%,68px"></x-import>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Checkbox" label="Remember me" checked="{{ remember }}" onChange="{{ onRememberChange }}" hint-size="auto,24px"></x-import>
+        <a href="#" style="font-size:var(--text-sm); color:var(--accent-primary); text-decoration:none;">Forgot password?</a>
+      </div>
+      <x-import component-from-global-scope="VerityDesignSystem_e79fdf.Button" type="submit" variant="primary" size="lg" hint-size="100%,44px">Sign in</x-import>
+    </form>
+
+    <div style="text-align:center; margin-top:var(--space-6); font-size:var(--text-sm); color:var(--text-secondary);">
+      Don't have an account? <a href="#" style="color:var(--accent-primary); text-decoration:none; font-weight:var(--weight-medium);">Sign up</a>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { email: "", password: "", remember: true };
+
+  renderVals() {
+    return {
+      email: this.state.email,
+      password: this.state.password,
+      remember: this.state.remember,
+      onEmailChange: (e) => this.setState({ email: e.target.value }),
+      onPasswordChange: (e) => this.setState({ password: e.target.value }),
+      onRememberChange: (e) => this.setState({ remember: e.target.checked }),
+      onSubmit: (e) => { e.preventDefault(); },
+    };
+  }
+}
+</script>
+</body>
+</html>

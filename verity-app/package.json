@@ -1,0 +1,28 @@
+{
+  "name": "verity-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:design": "playwright test",
+    "test:design:report": "playwright test; playwright show-report",
+    "test:design:update": "playwright test --update-snapshots",
+    "design:diff": "node ../scripts/design-diff.mjs",
+    "design:diff:summary": "node ../scripts/design-diff.mjs --summary",
+    "design:check": "node ../scripts/design-diff.mjs && npm run test:design"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  }
+}

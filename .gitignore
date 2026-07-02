@@ -1,0 +1,10 @@
+# App
+verity-app/node_modules/
+verity-app/dist/
+verity-app/playwright-report/
+verity-app/test-results/
+verity-app/.vite/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Semantic Status" subtitle="Error, success, warning — solid + subtle" -->
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:16px;background:var(--bg-primary);font-family:var(--font-body);font-size:12px;}
+.grp{display:flex;flex-direction:column;gap:6px;flex:1;}
+.row{display:flex;gap:8px;}
+.sw{flex:1;height:48px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-weight:600;}
+</style></head><body>
+<div class="row">
+<div class="grp">
+<div class="sw" style="background:var(--status-error);color:#fff">Error</div>
+<div class="sw" style="background:var(--status-error-subtle);color:var(--status-error)">Error subtle</div>
+</div>
+<div class="grp">
+<div class="sw" style="background:var(--status-success);color:#fff">Success</div>
+<div class="sw" style="background:var(--status-success-subtle);color:var(--status-success)">Success subtle</div>
+</div>
+<div class="grp">
+<div class="sw" style="background:var(--status-warning);color:#fff">Warning</div>
+<div class="sw" style="background:var(--status-warning-subtle);color:var(--status-warning)">Warning subtle</div>
+</div>
+</div>
+</body></html>

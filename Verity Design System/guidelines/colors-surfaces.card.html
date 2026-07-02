@@ -1,0 +1,17 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Light vs Dark Surfaces" subtitle="bg / text / border pairs" -->
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:0;font-family:var(--font-body);font-size:12px;}
+.half{width:50%;height:150px;float:left;padding:16px;box-sizing:border-box;}
+.card{border-radius:var(--radius-md);padding:12px;margin-bottom:8px;}
+</style></head><body>
+<div class="half" style="background:var(--gray-50)">
+<div style="color:var(--gray-400);margin-bottom:8px">LIGHT</div>
+<div class="card" style="background:#fff;border:1px solid var(--gray-200);color:var(--gray-900)">text-primary on bg-secondary</div>
+<div style="color:var(--gray-500)">text-secondary</div>
+</div>
+<div class="half" style="background:var(--gray-950)">
+<div style="color:var(--gray-600);margin-bottom:8px">DARK</div>
+<div class="card" style="background:var(--gray-900);border:1px solid var(--gray-800);color:var(--gray-50)">text-primary on bg-secondary</div>
+<div style="color:var(--gray-400)">text-secondary</div>
+</div>
+</body></html>

@@ -1,0 +1,14 @@
+<!-- @dsCard group="Foundations" viewport="700x120" name="Motion" subtitle="durations + easing on hover" -->
+<!DOCTYPE html><html><head><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:16px;background:var(--bg-secondary);font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);}
+.row{display:flex;gap:16px;}
+.chip{padding:10px 16px;border-radius:var(--radius-md);background:var(--accent-primary-subtle);color:var(--accent-primary);cursor:pointer;transition:transform var(--duration-normal) var(--easing-bounce), background var(--duration-fast) var(--easing-default);}
+.chip:hover{transform:scale(1.06);background:var(--accent-primary);color:#fff;}
+</style></head><body>
+<div class="row">
+<div class="chip">fast · 100ms</div>
+<div class="chip" style="transition-duration:var(--duration-normal)">normal · 200ms</div>
+<div class="chip" style="transition-duration:var(--duration-slow)">slow · 300ms</div>
+</div>
+<div style="margin-top:10px;color:var(--text-tertiary)">hover the chips — easing-bounce on scale, easing-default on color</div>
+</body></html>

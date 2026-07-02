@@ -1,0 +1,32 @@
+/* Verity — Typography tokens */
+:root {
+  --font-display: "Inter", system-ui, -apple-system, sans-serif;
+  --font-body:    "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono:    "JetBrains Mono", "Fira Code", monospace;
+
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  30px;
+  --text-4xl:  36px;
+  --text-5xl:  48px;
+
+  --leading-xs:   16px;
+  --leading-sm:   20px;
+  --leading-base: 24px;
+  --leading-lg:   28px;
+  --leading-xl:   28px;
+  --leading-2xl:  32px;
+  --leading-3xl:  36px;
+  --leading-4xl:  40px;
+  --leading-5xl:  48px;
+
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extrabold: 800;
+}

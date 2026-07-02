@@ -1,0 +1,6 @@
+/* Verity — Webfonts
+   No brand font files were supplied, so this system substitutes Inter (UI)
+   and JetBrains Mono (code/data) from Google Fonts — the same substitution
+   the source template specified. Flagged in readme.md; swap for real brand
+   font files whenever they're available. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
