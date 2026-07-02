@@ -9,29 +9,51 @@ npm run dev
 # http://localhost:5173
 ```
 
-## Design Sync — kiểm tra UI có khớp design không
+## Design Sync — kiểm tra design có đổi + UI có còn khớp không
 
-Mỗi khi thay đổi UI, chạy lệnh này để kiểm tra có lệch design không:
+### Khi design system được cập nhật — xem token/component nào đổi:
+
+```bash
+npm run design:diff
+```
+So sánh `_ds_manifest.json` hiện tại vs commit HEAD, in ra chính xác token nào đổi giá trị, thêm, xoá.
+
+```bash
+npm run design:diff --summary   # chỉ in 1 dòng tóm tắt
+```
+
+### Chạy cả 2: diff design rồi test UI luôn:
+
+```bash
+npm run design:check
+```
+Nếu design không đổi → chạy Playwright test. Nếu design đổi → dừng lại báo cáo, không test.
+
+### Kiểm tra UI có khớp design không (không quan tâm design đổi hay chưa):
 
 ```bash
 npm run test:design
 ```
 
-Chạy xong và mở HTML report luôn (pass/fail + screenshot khi fail):
+Chạy xong và mở HTML report (pass/fail + screenshot khi fail):
 
 ```bash
 npm run test:design:report
 ```
 
-Hoặc mở report của lần chạy cuối mà không cần chạy lại test:
+Mở report lần chạy cuối mà không chạy lại test:
 
 ```bash
 npx playwright show-report
 ```
 
-Khi design thay đổi (intentional), cập nhật baseline:
+Khi design thay đổi intentional — commit design mới rồi update baseline:
 
 ```bash
+# 1. commit file design đã đổi
+git add "Verity Design System/" && git commit -m "design: ..."
+
+# 2. update Playwright baseline
 npm run test:design:update
 ```
 
