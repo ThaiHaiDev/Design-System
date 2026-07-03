@@ -1,3 +1,6 @@
+# Generated artifacts
+scripts/.cloud-manifest-cache.json
+
 # App
 verity-app/node_modules/
 verity-app/dist/

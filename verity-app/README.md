@@ -11,7 +11,25 @@ npm run dev
 
 ## Design Sync — kiểm tra design có đổi + UI có còn khớp không
 
-### Khi design system được cập nhật — xem token/component nào đổi:
+### So sánh local vs cloud (claude.ai/design) — nguồn chính xác nhất:
+
+```bash
+npm run design:diff:cloud
+```
+So sánh local `_ds_manifest.json` vs bản mới nhất fetch từ cloud project **Verity Design System** trên claude.ai/design.
+Cache cloud được lưu tại `scripts/.cloud-manifest-cache.json`.
+
+Để **refresh cache cloud** (lấy bản mới nhất từ claude.ai/design), hỏi Claude Code:
+> "cập nhật cloud cache và kiểm tra design đổi gì không"
+
+Claude sẽ fetch `_ds_manifest.json` qua DesignSync và chạy diff tự động.
+
+```bash
+npm run design:diff:cloud --summary   # chỉ in 1 dòng tóm tắt
+npm run design:check:cloud            # diff cloud + test UI luôn
+```
+
+### So sánh local vs git HEAD (cho workflow commit-based):
 
 ```bash
 npm run design:diff
