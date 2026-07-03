@@ -15,7 +15,9 @@
     "design:diff:cloud": "node ../scripts/design-diff.mjs --source cloud",
     "design:diff:cloud:summary": "node ../scripts/design-diff.mjs --source cloud --summary",
     "design:check": "node ../scripts/design-diff.mjs && npm run test:design",
-    "design:check:cloud": "node ../scripts/design-diff.mjs --source cloud && npm run test:design"
+    "design:check:cloud": "node ../scripts/design-diff.mjs --source cloud && npm run test:design",
+    "design:diff:login": "node ../scripts/design-diff.mjs --page login",
+    "design:check:login": "node ../scripts/design-diff.mjs --page login && npm run test:design"
   },
   "dependencies": {
     "react": "^19.2.7",

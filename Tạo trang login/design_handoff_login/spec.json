@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "page": "login",
+  "layout": {
+    "container": {
+      "minHeight": "100vh",
+      "display": "flex",
+      "alignItems": "center",
+      "justifyContent": "center",
+      "background": "--bg-primary"
+    },
+    "card": {
+      "width": 360,
+      "background": "--bg-secondary",
+      "border": "1px --border-default",
+      "borderRadius": "--radius-xl",
+      "shadow": "--shadow-sm",
+      "padding": "--space-8"
+    }
+  },
+  "components": {
+    "wordmark": {
+      "text": "Verity",
+      "fontSize": "--text-2xl",
+      "fontWeight": "--weight-bold",
+      "color": "--text-primary",
+      "marginBottom": "4px"
+    },
+    "subtitle": {
+      "text": "Sign in to your account",
+      "fontSize": "--text-sm",
+      "color": "--text-secondary",
+      "marginBottom": "--space-6"
+    },
+    "socialButtons": {
+      "items": ["Continue with Google", "Continue with GitHub"],
+      "variant": "secondary",
+      "size": "lg",
+      "height": 44,
+      "fullWidth": true,
+      "gap": "--space-3",
+      "marginBottom": "--space-6",
+      "background": "transparent",
+      "border": "1px --border-default",
+      "color": "--text-primary"
+    },
+    "divider": {
+      "label": "OR",
+      "labelFontSize": "--text-xs",
+      "labelColor": "--text-tertiary",
+      "lineColor": "--border-default",
+      "gap": "--space-3",
+      "marginBottom": "--space-6"
+    },
+    "form": {
+      "emailInput": {
+        "label": "Email",
+        "type": "email",
+        "placeholder": "you@company.com",
+        "size": "lg"
+      },
+      "passwordInput": {
+        "label": "Password",
+        "type": "password",
+        "size": "lg"
+      },
+      "inputGap": "--space-4",
+      "rememberMe": {
+        "label": "Remember me",
+        "defaultChecked": true
+      },
+      "forgotPassword": {
+        "text": "Forgot password?",
+        "fontSize": "--text-sm",
+        "color": "--accent-primary"
+      }
+    },
+    "signInButton": {
+      "text": "Sign in",
+      "variant": "primary",
+      "size": "lg",
+      "height": 44,
+      "fullWidth": true,
+      "background": "--accent-primary",
+      "color": "--text-inverse"
+    },
+    "signUpRow": {
+      "text": "Don't have an account?",
+      "linkText": "Sign up",
+      "fontSize": "--text-sm",
+      "color": "--text-secondary",
+      "linkColor": "--accent-primary",
+      "linkWeight": "--weight-medium",
+      "marginTop": "--space-6",
+      "textAlign": "center"
+    }
+  }
+}
