@@ -19,18 +19,41 @@
     }
   },
   "components": {
+    "header": {
+      "container": {
+        "display": "flex",
+        "flexDirection": "column",
+        "alignItems": "center",
+        "textAlign": "center",
+        "marginBottom": "--space-6"
+      },
+      "logoMark": {
+        "width": 40,
+        "height": 40,
+        "borderRadius": "--radius-md",
+        "background": "--accent-primary",
+        "letter": "V",
+        "fontFamily": "--font-display",
+        "fontSize": "--text-lg",
+        "fontWeight": "--weight-extrabold",
+        "color": "--text-inverse",
+        "marginBottom": "--space-3"
+      }
+    },
     "wordmark": {
       "text": "Verity",
-      "fontSize": "--text-2xl",
-      "fontWeight": "--weight-bold",
-      "color": "--text-primary",
-      "marginBottom": "4px"
+      "fontFamily": "--font-display",
+      "fontSize": "--text-3xl",
+      "fontWeight": "--weight-extrabold",
+      "letterSpacing": "-0.02em",
+      "lineHeight": "--leading-3xl",
+      "color": "--text-primary"
     },
     "subtitle": {
       "text": "Sign in to your account",
       "fontSize": "--text-sm",
       "color": "--text-secondary",
-      "marginBottom": "--space-6"
+      "marginTop": "4px"
     },
     "socialButtons": {
       "items": ["Continue with Google", "Continue with GitHub"],

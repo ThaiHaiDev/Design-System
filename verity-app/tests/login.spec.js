@@ -69,6 +69,52 @@ test.describe('Login Page — design sync', () => {
     expect(await css(wordmark, 'font-weight')).toBe(t(spec.components.wordmark.fontWeight))
   })
 
+  test('wordmark: font-family, letter-spacing, line-height', async ({ page }) => {
+    const wordmark = page.getByText(spec.components.wordmark.text, { exact: true })
+    await expect(wordmark).toBeVisible()
+    expect(await css(wordmark, 'font-family')).toContain('Inter')
+    const letterSpacing = await css(wordmark, 'letter-spacing')
+    expect(letterSpacing).not.toBe('normal')
+    expect(parseFloat(letterSpacing)).toBeLessThan(0)
+    expect(await css(wordmark, 'line-height')).toBe(t(spec.components.wordmark.lineHeight))
+  })
+
+  test('subtitle: margin-top', async ({ page }) => {
+    const subtitle = page.getByText(spec.components.subtitle.text, { exact: true })
+    await expect(subtitle).toBeVisible()
+    expect(await css(subtitle, 'margin-top')).toBe(t(spec.components.subtitle.marginTop))
+  })
+
+  // --- Header / logo mark ---
+
+  test('header: logo mark size, radius, background', async ({ page }) => {
+    const { width, height, borderRadius, background, letter } = spec.components.header.logoMark
+    const glyph = page.locator('[data-testid="login-card"]').getByText(letter, { exact: true })
+    await expect(glyph).toBeVisible()
+    const box = glyph.locator('..')
+    expect(await box.evaluate(el => el.offsetWidth)).toBe(width)
+    expect(await box.evaluate(el => el.offsetHeight)).toBe(height)
+    expect(await css(box, 'border-radius')).toBe(t(borderRadius))
+    expect(await css(box, 'background-color')).toBe(t(background))
+  })
+
+  test('header: logo mark glyph font-size, font-weight, color', async ({ page }) => {
+    const { letter, fontSize, fontWeight, color } = spec.components.header.logoMark
+    const glyph = page.locator('[data-testid="login-card"]').getByText(letter, { exact: true })
+    expect(await css(glyph, 'font-size')).toBe(t(fontSize))
+    expect(await css(glyph, 'font-weight')).toBe(t(fontWeight))
+    expect(await css(glyph, 'color')).toBe(t(color))
+  })
+
+  test('header: container layout (centered column)', async ({ page }) => {
+    const { flexDirection, alignItems, marginBottom } = spec.components.header.container
+    const glyph = page.locator('[data-testid="login-card"]').getByText(spec.components.header.logoMark.letter, { exact: true })
+    const container = glyph.locator('../..')
+    expect(await css(container, 'flex-direction')).toBe(flexDirection)
+    expect(await css(container, 'align-items')).toBe(alignItems)
+    expect(await css(container, 'margin-bottom')).toBe(t(marginBottom))
+  })
+
   // --- Social buttons ---
 
   test('social buttons: visible, height, transparent background', async ({ page }) => {

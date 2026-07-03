@@ -36,6 +36,9 @@
   "--weight-bold":      "700",
   "--weight-extrabold": "800",
 
+  "--font-display": "\"Inter\", system-ui, -apple-system, sans-serif",
+  "--leading-3xl":  "36px",
+
   "--bg-primary":    "rgb(250, 250, 250)",
   "--bg-secondary":  "rgb(255, 255, 255)",
   "--bg-tertiary":   "rgb(244, 244, 245)",

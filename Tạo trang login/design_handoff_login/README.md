@@ -20,9 +20,11 @@ The file in this bundle (`Login.dc.html`) is a **design reference built in HTML*
 - Card content stacks vertically in document flow (no explicit gap container at the top level; spacing comes from margins listed per element below).
 
 **Components (top to bottom):**
-1. **Wordmark** — text "Verity", font-size `text-2xl`, font-weight `bold`, color = primary text token, margin-bottom 4px.
-2. **Subtitle** — text "Sign in to your account", font-size `text-sm`, color = secondary text token, margin-bottom `space-6` (24px).
-3. **Social buttons** (stacked, gap `space-3`/12px between them, `space-6` margin-bottom below the group):
+1. **Header block** — centered column (logo mark + wordmark + subtitle), `space-6` margin-bottom below the group.
+   - **Logo mark** — 40×40px square, `radius-md` corners, background = accent color, centered "V" glyph (`font-display`, `text-lg`, weight `extrabold`, inverse text color), `space-3` margin-bottom.
+   - **Wordmark** — text "Verity", `font-display` family, font-size `text-3xl`, font-weight `extrabold`, letter-spacing `-0.02em`, line-height `leading-3xl`, color = primary text token.
+   - **Subtitle** — text "Sign in to your account", font-size `text-sm`, color = secondary text token, margin-top 4px.
+2. **Social buttons** (stacked, gap `space-3`/12px between them, `space-6` margin-bottom below the group):
    - "Continue with Google" — secondary button variant, size lg (44px height), full width. Includes the Google "G" brand-colored icon (18px), `space-2` gap before the label text.
    - "Continue with GitHub" — same styling, with the GitHub mark icon (18px, `currentColor`), `space-2` gap before the label text.
    - Secondary variant styling: transparent background, 1px border (default border token), text = primary text color. Hover: tint neutral surface (per design system — hover state not implemented in this static mock).
