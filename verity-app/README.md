@@ -9,71 +9,110 @@ npm run dev
 # http://localhost:5173
 ```
 
+---
+
 ## Design Sync — kiểm tra design có đổi + UI có còn khớp không
 
-### So sánh local vs cloud (claude.ai/design) — nguồn chính xác nhất:
+### Tổng quan luồng
 
+```
+claude.ai/design  ──(DesignSync)──▶  .cloud-manifest-cache.json
+                                               │
+                                    design:diff:cloud
+                                               │
+                              local _ds_manifest.json
+                                               │
+                                        test:design
+                                               │
+                                    Playwright CSS tests
+```
+
+Có 2 nguồn so sánh:
+| Nguồn | Lệnh | Khi nào dùng |
+|-------|------|-------------|
+| **Cloud** (claude.ai/design) | `design:diff:cloud` | Khi designer vừa cập nhật design trên cloud |
+| **Git HEAD** | `design:diff` | Khi muốn xem local có uncommitted changes so với lần commit cuối |
+
+---
+
+### Workflow thông thường
+
+#### 1. Designer cập nhật design trên claude.ai/design
+
+Hỏi Claude Code trong terminal:
+```
+cập nhật cloud cache và kiểm tra design đổi gì không
+```
+Claude sẽ:
+- Fetch `_ds_manifest.json` mới nhất từ cloud qua DesignSync
+- Lưu vào `scripts/.cloud-manifest-cache.json`
+- Chạy diff và in ra token/component nào thay đổi
+
+Hoặc tự chạy (dùng cache hiện tại, không fetch mới):
 ```bash
 npm run design:diff:cloud
 ```
-So sánh local `_ds_manifest.json` vs bản mới nhất fetch từ cloud project **Verity Design System** trên claude.ai/design.
-Cache cloud được lưu tại `scripts/.cloud-manifest-cache.json`.
 
-Để **refresh cache cloud** (lấy bản mới nhất từ claude.ai/design), hỏi Claude Code:
-> "cập nhật cloud cache và kiểm tra design đổi gì không"
-
-Claude sẽ fetch `_ds_manifest.json` qua DesignSync và chạy diff tự động.
+#### 2. Kiểm tra luôn UI code có còn khớp với cloud design không:
 
 ```bash
-npm run design:diff:cloud --summary   # chỉ in 1 dòng tóm tắt
-npm run design:check:cloud            # diff cloud + test UI luôn
+npm run design:check:cloud
 ```
+→ Diff cloud trước, nếu không có gì đổi thì chạy Playwright test UI.
 
-### So sánh local vs git HEAD (cho workflow commit-based):
-
-```bash
-npm run design:diff
-```
-So sánh `_ds_manifest.json` hiện tại vs commit HEAD, in ra chính xác token nào đổi giá trị, thêm, xoá.
+#### 3. Khi design đổi intentional — cập nhật local rồi đồng bộ:
 
 ```bash
-npm run design:diff --summary   # chỉ in 1 dòng tóm tắt
-```
+# Chỉnh sửa file trong "Verity Design System/" cho khớp với cloud
+# Sau đó commit
+git add "Verity Design System/" && git commit -m "design: update <tên token/component>"
 
-### Chạy cả 2: diff design rồi test UI luôn:
-
-```bash
-npm run design:check
-```
-Nếu design không đổi → chạy Playwright test. Nếu design đổi → dừng lại báo cáo, không test.
-
-### Kiểm tra UI có khớp design không (không quan tâm design đổi hay chưa):
-
-```bash
+# Test lại UI
 npm run test:design
 ```
 
-Chạy xong và mở HTML report (pass/fail + screenshot khi fail):
+---
+
+### Tất cả lệnh
+
+#### Design diff
 
 ```bash
-npm run test:design:report
+npm run design:diff:cloud          # local vs cloud (DesignSync cache)
+npm run design:diff:cloud:summary  # chỉ 1 dòng tóm tắt
+npm run design:diff                # local vs git HEAD
+npm run design:diff:summary        # chỉ 1 dòng tóm tắt
 ```
 
-Mở report lần chạy cuối mà không chạy lại test:
+#### Design check (diff + test UI)
 
 ```bash
-npx playwright show-report
+npm run design:check:cloud   # diff cloud → test Playwright
+npm run design:check         # diff HEAD → test Playwright
 ```
 
-Khi design thay đổi intentional — commit design mới rồi update baseline:
+#### Test UI
 
 ```bash
-# 1. commit file design đã đổi
-git add "Verity Design System/" && git commit -m "design: ..."
-
-# 2. update Playwright baseline
-npm run test:design:update
+npm run test:design          # chạy 13 Playwright CSS tests
+npm run test:design:report   # chạy xong mở HTML report
+npx playwright show-report   # mở report lần cuối (không chạy lại)
+npm run test:design:update   # update baseline sau khi đổi design intentional
 ```
+
+---
+
+### Cloud cache
+
+File `scripts/.cloud-manifest-cache.json` là bản manifest fetch từ cloud, lưu kèm timestamp:
+```json
+{ "_cloudSyncedAt": "2026-07-03T...", "_cloudProjectId": "e79fdf30-..." }
+```
+
+- **Không commit** file này (đã có trong `.gitignore`)
+- Để refresh: hỏi Claude Code *"cập nhật cloud cache"* — Claude dùng DesignSync fetch về
+
+---
 
 ### Cách test hoạt động
 
