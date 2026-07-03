@@ -39,18 +39,22 @@ Có 2 nguồn so sánh:
 
 #### 1. Designer cập nhật design trên claude.ai/design
 
-Hỏi Claude Code trong terminal:
-```
-cập nhật cloud cache và kiểm tra design đổi gì không
-```
-Claude sẽ:
-- Fetch `_ds_manifest.json` mới nhất từ cloud qua DesignSync
-- Lưu vào `scripts/.cloud-manifest-cache.json`
-- Chạy diff và in ra token/component nào thay đổi
+> **Lưu ý:** DesignSync chỉ chạy được bên trong Claude Code — không có lệnh terminal nào thay thế.
+> `npm run design:diff:cloud` chỉ so sánh với **cache cũ**, không tự fetch mới từ cloud.
 
-Hoặc tự chạy (dùng cache hiện tại, không fetch mới):
+**Để lấy bản mới nhất từ cloud**, dùng slash command trong Claude Code:
+```
+/sync-design
+```
+Claude sẽ tự động:
+1. Fetch `_ds_manifest.json` mới nhất từ cloud qua DesignSync
+2. Ghi đè `scripts/.cloud-manifest-cache.json`
+3. Chạy `design:diff:cloud` và in ra token/component nào thay đổi
+
+Sau khi `/sync-design` xong, có thể chạy thêm:
 ```bash
-npm run design:diff:cloud
+npm run design:diff:cloud   # xem lại diff với cache vừa fetch
+npm run test:design         # test UI nếu có thay đổi
 ```
 
 #### 2. Kiểm tra luôn UI code có còn khớp với cloud design không:
@@ -75,10 +79,18 @@ npm run test:design
 
 ### Tất cả lệnh
 
-#### Design diff
+#### Sync từ cloud (dùng trong Claude Code chat)
+
+```
+/sync-design    # fetch cloud manifest → update cache → chạy diff
+```
+
+> DesignSync chỉ chạy được trong Claude Code. Đây là lệnh duy nhất để lấy bản mới nhất từ cloud.
+
+#### Design diff (dùng trong terminal)
 
 ```bash
-npm run design:diff:cloud          # local vs cloud (DesignSync cache)
+npm run design:diff:cloud          # local vs cloud cache (phải /sync-design trước)
 npm run design:diff:cloud:summary  # chỉ 1 dòng tóm tắt
 npm run design:diff                # local vs git HEAD
 npm run design:diff:summary        # chỉ 1 dòng tóm tắt
@@ -87,7 +99,7 @@ npm run design:diff:summary        # chỉ 1 dòng tóm tắt
 #### Design check (diff + test UI)
 
 ```bash
-npm run design:check:cloud   # diff cloud → test Playwright
+npm run design:check:cloud   # diff cloud cache → test Playwright
 npm run design:check         # diff HEAD → test Playwright
 ```
 
@@ -110,7 +122,7 @@ File `scripts/.cloud-manifest-cache.json` là bản manifest fetch từ cloud, l
 ```
 
 - **Không commit** file này (đã có trong `.gitignore`)
-- Để refresh: hỏi Claude Code *"cập nhật cloud cache"* — Claude dùng DesignSync fetch về
+- Để refresh: dùng `/sync-design` trong Claude Code — tự fetch + diff luôn
 
 ---
 
