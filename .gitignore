@@ -1,6 +1,9 @@
 # Generated artifacts
 scripts/.cloud-manifest-cache.json
 scripts/.cloud-project-id
+scripts/.login-project-id
+scripts/sync-login.log
+verity-app/scripts/
 
 # App
 verity-app/node_modules/

@@ -42,7 +42,13 @@
       "marginBottom": "--space-6",
       "background": "transparent",
       "border": "1px --border-default",
-      "color": "--text-primary"
+      "color": "--text-primary",
+      "icon": {
+        "size": 18,
+        "gap": "--space-2",
+        "google": "brand-colored multi-path SVG (blue/green/yellow/red)",
+        "github": "single-path SVG, currentColor"
+      }
     },
     "divider": {
       "label": "OR",
@@ -62,7 +68,13 @@
       "passwordInput": {
         "label": "Password",
         "type": "password",
-        "size": "lg"
+        "size": "lg",
+        "visibilityToggle": {
+          "ariaLabel": "Toggle password visibility",
+          "iconSize": 18,
+          "iconColor": "--text-tertiary",
+          "position": "inset-right"
+        }
       },
       "inputGap": "--space-4",
       "rememberMe": {

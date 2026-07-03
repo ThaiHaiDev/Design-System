@@ -23,13 +23,13 @@ The file in this bundle (`Login.dc.html`) is a **design reference built in HTML*
 1. **Wordmark** — text "Verity", font-size `text-2xl`, font-weight `bold`, color = primary text token, margin-bottom 4px.
 2. **Subtitle** — text "Sign in to your account", font-size `text-sm`, color = secondary text token, margin-bottom `space-6` (24px).
 3. **Social buttons** (stacked, gap `space-3`/12px between them, `space-6` margin-bottom below the group):
-   - "Continue with Google" — secondary button variant, size lg (44px height), full width.
-   - "Continue with GitHub" — same styling.
+   - "Continue with Google" — secondary button variant, size lg (44px height), full width. Includes the Google "G" brand-colored icon (18px), `space-2` gap before the label text.
+   - "Continue with GitHub" — same styling, with the GitHub mark icon (18px, `currentColor`), `space-2` gap before the label text.
    - Secondary variant styling: transparent background, 1px border (default border token), text = primary text color. Hover: tint neutral surface (per design system — hover state not implemented in this static mock).
 4. **Divider** — flex row: 1px horizontal line (border token) — "OR" label (`text-xs`, tertiary text color) — 1px horizontal line. `space-3` gap between line/label. `space-6` margin-bottom.
 5. **Form:**
    - **Email input** — labeled "Email", type email, placeholder "you@company.com", size lg.
-   - **Password input** — labeled "Password", type password, placeholder shown as dots, size lg.
+   - **Password input** — labeled "Password", type password, placeholder shown as dots, size lg. Includes a visibility toggle (eye/eye-off icon button, 18px, tertiary text color) inset in the field's right edge; clicking it switches the input between `password` and `text` types.
    - Inputs use `space-4` (16px) vertical gap between form rows.
    - **Remember me / Forgot password row** — flex row, `justify-content: space-between`, `align-items: center`:
      - Checkbox labeled "Remember me", checked by default.
