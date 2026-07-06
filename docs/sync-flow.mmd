@@ -1,0 +1,58 @@
+flowchart TD
+    subgraph CLOUD["claude.ai/design"]
+        DS_PROJ["Design System project — _ds_manifest.json"]
+        LOGIN_PROJ["Login project — Login.dc.html"]
+    end
+
+    DESIGN_LOGIN["/design-login — cấp design scopes"]
+
+    subgraph CMD["Slash commands"]
+        SYNC_DESIGN["/sync-design"]
+        SYNC_LOGIN["/sync-login"]
+    end
+
+    subgraph ARTIFACT["Artifacts + Config"]
+        CACHE[".cloud-manifest-cache.json"]
+        MANIFEST["_ds_manifest.json local"]
+        SPEC["spec.json"]
+        HTML["Login.dc.html local"]
+        TOKENMAP["token-values.json"]
+        LOG["sync-login.log"]
+    end
+
+    subgraph SCRIPTS["Scripts"]
+        DIFF["design-diff.mjs"]
+        GENTEST["gen-login-tests.mjs"]
+    end
+
+    subgraph CODE["Code + Test"]
+        JSX["LoginPage.jsx"]
+        TEST["login.spec.js — đọc động"]
+        PW["npm run test:design"]
+    end
+
+    DESIGN_LOGIN -.cấp quyền.-> SYNC_DESIGN
+    DESIGN_LOGIN -.cấp quyền.-> SYNC_LOGIN
+
+    SYNC_DESIGN -->|DesignSync| DS_PROJ
+    DS_PROJ -->|fetch| CACHE
+    CACHE --> DIFF
+    MANIFEST --> DIFF
+    DIFF -->|diff:cloud| REPORT1["In tokens/components changed"]
+
+    SYNC_LOGIN -->|DesignSync| LOGIN_PROJ
+    LOGIN_PROJ -->|fetch| HTML
+    SYNC_LOGIN -->|trích giá trị| SPEC
+    SYNC_LOGIN -->|append| LOG
+    SPEC --> DIFF
+    DIFF -->|diff:login vs git HEAD| REPORT2["In spec changed"]
+    SPEC --> GENTEST
+    GENTEST -->|section mới = test.fail stub| TEST
+
+    SPEC --> TEST
+    TOKENMAP --> TEST
+    TEST --> PW
+    JSX --> PW
+    PW -->|PASS| OK["UI khớp design"]
+    PW -->|FAIL| FIX["Sửa LoginPage.jsx cho khớp spec"]
+    FIX --> JSX
